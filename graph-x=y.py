@@ -21,17 +21,19 @@ while True:
     pygame.draw.line(screen, (0,0,0), (0, py), (size[0],py), 1)
     pygame.draw.line(screen, (0,0,0), (px, 0), (px, size[1]), 1)
 
-    #np = py - (dt/2)
-    pp = py
-    pnmp = py
+    np = dt / 2
+    pp = 0
+    pnmp = py - (np - pp) / dt
 
-    for i in range(2, 500):
-        pygame.draw.line(screen, (255,0,0), (px + i-1, pp), (px + i, np), 1)
+    for i in range(2, 501):
+        pygame.draw.line(screen, (255,0,0), (px + i-1, py - pp), (px + i, py - np), 1)
         pygame.draw.line(screen, (0,0,255), (px + i-1, py - (((i-1)*(i-1))/2)/1000), (px + i, py - ((i*i)/2)/1000), 1)
-        pygame.draw.line(screen, (0,255,0), (px + (i-1), pnmp), (px + i, np - pp), 1)
-        pnmp = np - pp
+        pygame.draw.line(screen, (0,255,0), (px + (i-1), pnmp), (px + i, py - (np - pp)/dt), 1)
+        pygame.draw.line(screen, (150,100,0), (px + i-1, py - i-1), (px + i, py - i), 1)
+        
+        pnmp = py - (np - pp)/dt
         pp = np
-        #np = py - (((i*i)*dt)/2)
+        np = ((i*i)*dt)/2
 
     pygame.display.update()
     fps.tick(24)

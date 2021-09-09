@@ -4,7 +4,7 @@ from random import *
 ci = 0
 a = 0
 x = random()
-y = random()
+y = random()*2
 
 for i in range(10000):
     if ((x*x)/4) + (y*y) < 1:
@@ -12,7 +12,7 @@ for i in range(10000):
     a += 1
 
     x = random()
-    y = random()
+    y = random()*2
 
 print((pi * 2) / 4, ":", 2, " ≒ ", ci, ":", a)
 print(((2*ci)/a)*4)
